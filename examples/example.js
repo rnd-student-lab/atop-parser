@@ -21,7 +21,7 @@ const parsePromisified = async () => {
 };
 
 const parseStreamified = async () => {
-  const stream = await fs.createReadStream(sourcePath);
+  const stream = fs.createReadStream(sourcePath);
 
   atopLogsToObjectStream(stream, {
     timestampFirst: true,
@@ -30,7 +30,7 @@ const parseStreamified = async () => {
 };
 
 const parseMixed = async () => {
-  const stream = await fs.createReadStream(sourcePath);
+  const stream = fs.createReadStream(sourcePath);
 
   const data = await atopLogsToObject(stream, {
     timestampFirst: true,
