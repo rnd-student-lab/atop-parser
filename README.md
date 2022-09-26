@@ -147,6 +147,40 @@ const { getAtopFields } = require('atop-parser');
 console.log(getAtopFields());
 ```
 
+### Example result
+
+Assuming we run atopLogsToObject() function with `timestampFirst` set to `true` and `labels` set to `['CPU']`.
+Given the input file with atop statistics has only the following entry:
+
+```tsv
+CPU bi-ca-server-0 1663241160 2022/09/15 11:26:00 1 100 2 3 1 0 195 0 0 1 0 0 7200 100 0 0
+SEP
+```
+
+The result of the parsing will be:
+
+```json
+{
+  "1663241160": {
+    "CPU": {
+      "default": {
+        "total number of clock-ticks per second for this machine": "100",
+        "number of processors": "2",
+        "consumption for all CPU's in system mode (clock-ticks)": "3",
+        "consumption for all CPU's in user mode (clock-ticks)": "1",
+        "consumption for all CPU's in user mode for niced processes (clock-ticks)": "0",
+        "consumption for all CPU's in idle mode (clock-ticks)": "195",
+        "consumption for all CPU's in wait mode (clock-ticks)": "0",
+        "consumption for all CPU's in irq mode (clock-ticks)": "0",
+        "consumption for all CPU's in softirq mode (clock-ticks)": "1",
+        "consumption for all CPU's in steal mode (clock-ticks)": "0",
+        "consumption for all CPU's in guest mode (clock-ticks)": "0"
+      }
+    }
+  }
+}
+```
+
 ## License
 
 MIT © Dmitry Ilin
