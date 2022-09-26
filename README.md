@@ -1,8 +1,8 @@
 # Atop parser
 
-[![Build Status](https://travis-ci.org/rnd-student-lab/atop-parser.svg?branch=master)](https://travis-ci.org/rnd-student-lab/atop-parser)
-[![dependencies Status](https://david-dm.org/rnd-student-lab/atop-parser/status.svg)](https://david-dm.org/rnd-student-lab/atop-parser)
-[![devDependencies Status](https://david-dm.org/rnd-student-lab/atop-parser/dev-status.svg)](https://david-dm.org/rnd-student-lab/atop-parser?type=dev)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-airbnb-red.svg)](https://standardjs.com)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/atop-parser)
+[![downloads per month](http://img.shields.io/npm/dm/atop-parser.svg)](https://www.npmjs.org/package/atop-parser)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Atop parser is a library for converting atop utility logs to javascript objects.
@@ -64,6 +64,15 @@ The same verbose descriptions are used as keys for objects in `atopLogsToObjectS
 Be aware that NET label has two different sets of descriptions: one for upper network layers, and one for network interfaces.
 
 * `<Object<String, Array<String | Array<String>>>>` - object describing atop fields for each label.
+
+### getFieldsByLabel(label)
+
+Returns a list of verbose descriptions (for the specified label only) for each position in atop log.
+A simple shorthand for `getAtopFields()[label]`
+
+Be aware that NET label has two different sets of descriptions: one for upper network layers, and one for network interfaces.
+
+* `<String, Array<String | Array<String>>>` - description of atop fields for the specified label.
 
 ## Installation
 
@@ -145,6 +154,40 @@ const { getAtopFields } = require('atop-parser');
 // ...
 
 console.log(getAtopFields());
+```
+
+### Example result
+
+Assuming we run atopLogsToObject() function with `timestampFirst` set to `true` and `labels` set to `['CPU']`.
+Given the input file with atop statistics has only the following entry:
+
+```tsv
+CPU bi-ca-server-0 1663241160 2022/09/15 11:26:00 1 100 2 3 1 0 195 0 0 1 0 0 7200 100 0 0
+SEP
+```
+
+The result of the parsing will be:
+
+```json
+{
+  "1663241160": {
+    "CPU": {
+      "default": {
+        "total number of clock-ticks per second for this machine": "100",
+        "number of processors": "2",
+        "consumption for all CPU's in system mode (clock-ticks)": "3",
+        "consumption for all CPU's in user mode (clock-ticks)": "1",
+        "consumption for all CPU's in user mode for niced processes (clock-ticks)": "0",
+        "consumption for all CPU's in idle mode (clock-ticks)": "195",
+        "consumption for all CPU's in wait mode (clock-ticks)": "0",
+        "consumption for all CPU's in irq mode (clock-ticks)": "0",
+        "consumption for all CPU's in softirq mode (clock-ticks)": "1",
+        "consumption for all CPU's in steal mode (clock-ticks)": "0",
+        "consumption for all CPU's in guest mode (clock-ticks)": "0"
+      }
+    }
+  }
+}
 ```
 
 ## License
