@@ -1,8 +1,8 @@
 # Atop parser
 
-[![Build Status](https://travis-ci.org/rnd-student-lab/atop-parser.svg?branch=master)](https://travis-ci.org/rnd-student-lab/atop-parser)
-[![dependencies Status](https://david-dm.org/rnd-student-lab/atop-parser/status.svg)](https://david-dm.org/rnd-student-lab/atop-parser)
-[![devDependencies Status](https://david-dm.org/rnd-student-lab/atop-parser/dev-status.svg)](https://david-dm.org/rnd-student-lab/atop-parser?type=dev)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-airbnb-red.svg)](https://standardjs.com)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/atop-parser)
+[![downloads per month](http://img.shields.io/npm/dm/atop-parser.svg)](https://www.npmjs.org/package/atop-parser)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Atop parser is a library for converting atop utility logs to javascript objects.
@@ -64,6 +64,15 @@ The same verbose descriptions are used as keys for objects in `atopLogsToObjectS
 Be aware that NET label has two different sets of descriptions: one for upper network layers, and one for network interfaces.
 
 * `<Object<String, Array<String | Array<String>>>>` - object describing atop fields for each label.
+
+### getFieldsByLabel(label)
+
+Returns a list of verbose descriptions (for the specified label only) for each position in atop log.
+A simple shorthand for `getAtopFields()[label]`
+
+Be aware that NET label has two different sets of descriptions: one for upper network layers, and one for network interfaces.
+
+* `<String, Array<String | Array<String>>>` - description of atop fields for the specified label.
 
 ## Installation
 
