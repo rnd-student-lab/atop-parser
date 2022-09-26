@@ -77,7 +77,7 @@ const REG_EXP = /\(\)|[^\( \)]+/ig; // eslint-disable-line no-useless-escape
 
 const getFieldsByLabel = (label) => getAtopFields()[label];
 
-const rawStreamToSampleStream = (lineStream) => h(lineStream)
+const dataStreamToSampleStream = (rawStream) => rawStream
   .splitBy(new RegExp(`${SEPARATOR}\n`))
   .compact()
   .map((sampleString) => {
@@ -87,10 +87,14 @@ const rawStreamToSampleStream = (lineStream) => h(lineStream)
     return entries;
   });
 
-const rawDataToSampleStream = (data) => {
-  const input = isStream(data) ? data : h.of(data);
-  return rawStreamToSampleStream(input);
+const rawDataToHighlandStream = (data) => {
+  if (h.isStream(data)) {
+    return data;
+  }
+  return isStream(data) ? h(data) : h.of(data);
 };
+
+const rawDataToSampleStream = (data) => dataStreamToSampleStream(rawDataToHighlandStream(data));
 
 const atopLogsToObjectStream = (logs, options = {}) => {
   const timestampFirst = options.timestampFirst || false;

@@ -48,6 +48,7 @@
     "@babel/preset-env": "^7.19.1",
     "@babel/register": "^7.18.9",
     "chai": "^4.3.6",
+    "core-js": "^3.25.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.23.1",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -59,7 +60,6 @@
     "type-detect": "^4.0.8"
   },
   "dependencies": {
-    "core-js": "3.25.1",
     "highland": "2.13.5",
     "isstream": "0.1.2",
     "lodash": "4.17.21"

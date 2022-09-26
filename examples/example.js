@@ -23,6 +23,11 @@ const parsePromisified = async () => {
 const parseStreamified = async () => {
   const stream = fs.createReadStream(sourcePath);
 
+  console.log(atopLogsToObjectStream(stream, {
+    timestampFirst: true,
+    labels: ['CPU', 'MEM', 'NET']
+  }));
+
   atopLogsToObjectStream(stream, {
     timestampFirst: true,
     labels: ['CPU', 'MEM', 'NET']
