@@ -14,11 +14,12 @@ For atop details see:
 
 ## API
 
-The library has three main functions:
+The library has four main functions:
 
 * atopLogsToObjectStream
 * atopLogsToObject
 * getAtopFields
+* getFieldsByLabel
 
 ### atopLogsToObjectStream(logs[, options])
 
