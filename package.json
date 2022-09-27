@@ -1,6 +1,6 @@
 {
   "name": "atop-parser",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A library for converting atop utility logs to javascript objects",
   "main": "./lib/index.js",
   "scripts": {
